@@ -5,19 +5,25 @@ import fs from 'fs'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const __db = __dirname + '/../db/db.json'
 
+Array.prototype.lastItem = function () {
+    return this[this.length - 1]
+}
+
 export default class DB {
     constructor() {
         const results = fs.readFileSync(__db, 'utf8')
         this.posts = JSON.parse(results)
     }
 
-    save(data) {
-        // TODO: process data here...
+    save(post) {
+        const currentID = this.posts.lastItem().id + 1
+        post['id'] = currentID
 
-        fs.writeFile(__db, this.posts, function (error) {
-           if (error) throw error;
-           console.log('the file has been saved!');
+        this.posts.push(post)
+        fs.writeFileSync(__db, JSON.stringify(this.posts), function (error) {
+            if (error) return { isSaveSuccessful: false, error }
         });
+        return { isSaveSuccessful: true, error: '' }
     }
 
     get(id) {

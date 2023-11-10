@@ -7,11 +7,11 @@
                 Straight from the cerebrum
             </h3>
 
-            <% posts.forEach((post) => { %>
+            <% posts.reverse().forEach((post) => { %>
             <article class="blog-post">
                 <h2 class="display-5 link-body-emphasis mb-1"><%= post.title %></h2>
                 <p class="blog-post-meta"><%= post.date %></p>
-                <p><%= post.body %></p>
+                <p><%- post.body %></p>
             </article>
             <% }) %>
         </div>

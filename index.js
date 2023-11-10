@@ -23,13 +23,18 @@ app.post('/add', (req, res) => {
     const date = new Date()
     const currentDay = date.toLocaleDateString('en-UK', { year: 'numeric', month: 'long', day: 'numeric' })
 
+    const body = req.body.body.replace(/(?:\r\n|\r|\n)/g, '<br />')
     const post = {
         title: req.body.title,
-        body: req.body.body,
+        body: body,
         date: currentDay,
     }
-    db.save(post)
-    res.redirect('/')
+    const { isSaveSuccessful, error } = db.save(post)
+    if (!isSaveSuccessful) {
+        res.render('add', { errorMessage: error })
+    } else {
+        res.redirect('/')
+    }
 })
 
 app.get('/edit', (req, res) => {
