@@ -16,7 +16,10 @@
             <label for="body" class="form-label">Body</label>
             <textarea class="form-control" id="body" name="body" rows="3"><%- post.body.replace(/<br\s*[\/]?>/gi, '\r\n') %></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3 d-flex justify-content-between">
+            <a href="/delete/<%= post.id %>" class="btn btn-danger">Delete</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>
 

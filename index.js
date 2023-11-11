@@ -58,8 +58,14 @@ app.post('/edit', (req, res) => {
     }
 })
 
-app.post('/delete', (req, res) => {
-    res.redirect('/')
+app.get('/delete/:id', (req, res) => {
+    const id = req.params.id
+    const { isSaveSuccessful, error } = db.delete(id)
+    if (!isSaveSuccessful) {
+        res.render('edit', { post, errorMessage: error })
+    } else {
+        res.redirect('/')
+    }
 })
 
 app.listen(port, () => {

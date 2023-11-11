@@ -38,6 +38,16 @@ export default class DB {
         return { isSaveSuccessful: true, error: '' }
     }
 
+    delete(id) {
+        const filteredPosts = this.posts.filter(post => post.id !== id)
+        filteredPosts.reverse()
+        fs.writeFileSync(__db, JSON.stringify(filteredPosts), function (error) {
+            if (error) return { isSaveSuccessful: false, error }
+        });
+        this.posts = filteredPosts.reverse()
+        return { isSaveSuccessful: true, error: '' }
+    }
+
     post(id) {
         return this.posts.find(post => post.id === id)
     }
