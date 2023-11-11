@@ -37,12 +37,25 @@ app.post('/add', (req, res) => {
     }
 })
 
-app.get('/edit', (req, res) => {
-    res.render('add')
+app.get('/post/:id', (req, res) => {
+    const id = req.params.id
+    const post = db.post(id)
+    res.render('post', { post })
+})
+
+app.get('/edit/:id', (req, res) => {
+    const post = db.post(req.params.id)
+    res.render('edit', { post })
 })
 
 app.post('/edit', (req, res) => {
-
+    const post = req.body
+    const { isSaveSuccessful, error } = db.update(post)
+    if (!isSaveSuccessful) {
+        res.render('edit', { post, errorMessage: error })
+    } else {
+        res.render('edit', { post })
+    }
 })
 
 app.post('/delete', (req, res) => {

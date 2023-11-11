@@ -7,13 +7,11 @@
                 Straight from the cerebrum
             </h3>
 
-            <% posts.forEach((post) => { %>
             <article class="blog-post">
-                <h2 class="display-5 link-body-emphasis mb-1"><a href="/post/<%= post.id %>"><%= post.title %></a></h2>
+                <h2 class="display-5 link-body-emphasis mb-1"><%= post.title %></h2>
                 <p class="blog-post-meta"><%= post.date %></p>
                 <p><%- post.body %></p>
             </article>
-            <% }) %>
         </div>
 
     <div class="col-md-4">

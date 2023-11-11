@@ -31,7 +31,9 @@
       <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-center">
           <a class="nav-item nav-link link-body-emphasis" href="/add">Add Post</a>
-          <a class="nav-item nav-link link-body-emphasis" href="/edit">Edit Post</a>
+          <% if (locals.post) { %>
+            <a class="nav-item nav-link link-body-emphasis" href="/edit/<%= post.id %>">Edit Post</a>
+          <% } %>
         </nav>
       </div>
     </div>
