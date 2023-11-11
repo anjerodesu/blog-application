@@ -6,6 +6,11 @@
         <%= errorMessage %>
     </div>
     <% } %>
+    <% if (locals.successMessage) { %>
+    <div class="alert alert-success" role="alert">
+        <%= successMessage %>
+    </div>
+    <% } %>
     <form action="/edit" method="POST">
         <input type="hidden" id="id" name="id" value="<%= post.id %>">
         <div class="mb-3">

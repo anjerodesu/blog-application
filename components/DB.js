@@ -9,19 +9,15 @@ const __db = __dirname + '/../db/db.json'
 export default class DB {
     constructor() {
         const results = fs.readFileSync(__db, 'utf8')
-        const posts = JSON.parse(results)
-        this.posts = (posts.length > 0) ? posts.reverse() : posts
+        this.posts = JSON.parse(results)
     }
 
     save(post) {
         post['id'] = uuidv4()
-        const posts = this.posts.slice()
-        posts.reverse()
-        posts.push(post)
-        fs.writeFileSync(__db, JSON.stringify(posts), function (error) {
+        this.posts.push(post)
+        fs.writeFileSync(__db, JSON.stringify(this.posts), function (error) {
             if (error) return { isSaveSuccessful: false, error }
         });
-        this.posts = posts.reverse()
         return { isSaveSuccessful: true, error: '' }
     }
 
@@ -29,22 +25,18 @@ export default class DB {
         const index = this.posts.findIndex(obj => obj.id === post.id)
         this.posts[index].title = post.title
         this.posts[index].body = post.body
-        const posts = this.posts.slice()
-        posts.reverse()
-        fs.writeFileSync(__db, JSON.stringify(posts), function (error) {
+        fs.writeFileSync(__db, JSON.stringify(this.posts), function (error) {
             if (error) return { isSaveSuccessful: false, error }
         });
-        this.posts = posts.reverse()
         return { isSaveSuccessful: true, error: '' }
     }
 
     delete(id) {
         const filteredPosts = this.posts.filter(post => post.id !== id)
-        filteredPosts.reverse()
         fs.writeFileSync(__db, JSON.stringify(filteredPosts), function (error) {
             if (error) return { isSaveSuccessful: false, error }
         });
-        this.posts = filteredPosts.reverse()
+        this.posts = filteredPosts
         return { isSaveSuccessful: true, error: '' }
     }
 

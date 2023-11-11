@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    const posts = db.getPosts()
+    const posts = db.getPosts().slice().reverse()
     res.render('index', {
         posts: posts,
     })
@@ -54,7 +54,7 @@ app.post('/edit', (req, res) => {
     if (!isSaveSuccessful) {
         res.render('edit', { post, errorMessage: error })
     } else {
-        res.render('edit', { post })
+        res.render('edit', { post, successMessage: 'The post has been edited successfully.' })
     }
 })
 
