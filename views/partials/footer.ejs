@@ -11,7 +11,9 @@
         <ul class="nav col-md-4 justify-content-end">
           <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Home</a></li>
           <li class="nav-item"><a href="/add" class="nav-link px-2 text-body-secondary">Add Posts</a></li>
-          <li class="nav-item"><a href="/edit" class="nav-link px-2 text-body-secondary">Edit Posts</a></li>
+          <% if (locals.post) { %>
+            <li class="nav-item"><a href="/edit/<%= post.id %>" class="nav-link px-2 text-body-secondary">Edit Posts</a></li>
+          <% } %>
         </ul>
       </footer>
     </div>

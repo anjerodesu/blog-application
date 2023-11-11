@@ -16,9 +16,10 @@ The goal of the project is to create a blog web application using NodeJS, Expres
 
 1. **Post Creation:** Users should be able to create new posts.
 2. **Post Viewing:** The home page should allow the users to view all their posts.
-3. **Post Update:** Users should be able to edit their posts.
-4. **Post Delete:** Users should be able to delete their posts.
-5. **Styling:** The application should be we well-styled and responsive, ensuring a good user experience on both desktop and mobile devices.
+3. **Post Details:** Users should be able to view their post when clicking the title from the homepage.
+4. **Post Update:** Users should be able to edit their posts.
+5. **Post Delete:** Users should be able to delete their posts.
+6. **Styling:** The application should be we well-styled and responsive, ensuring a good user experience on both desktop and mobile devices.
 
 ## Technical Requirements
 
